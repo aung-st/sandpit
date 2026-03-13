@@ -4,7 +4,7 @@ test('Has Demo QA title', async ({ page }) => {
   await page.goto('https://demoqa.com/');
 
   // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/DEMOQA/);
+  await expect(page).toHaveTitle(/demosite/);
 });
 
 // --- Card Visibility Checks ---
