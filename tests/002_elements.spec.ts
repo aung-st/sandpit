@@ -211,3 +211,237 @@ await expect(page
     .getByRole('listitem')
     .filter({ hasText: 'Modal Dialogs' })).toBeVisible();
 });
+
+test('Widgets has list item accordian', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Widgets').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: 'Accordian' })).toBeVisible();
+});
+
+test('Widgets has list item auto complete', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Widgets').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: 'Auto Complete' })).toBeVisible();
+});
+
+test('Widgets has list item date picker', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Widgets').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: 'Date Picker' })).toBeVisible();
+});
+
+test('Widgets has list item slider', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Widgets').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: 'Slider' })).toBeVisible();
+});
+
+test('Widgets has list item progress bar', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Widgets').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: 'Progress Bar' })).toBeVisible();
+});
+
+test('Widgets has list item tabs', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Widgets').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: 'Tabs' })).toBeVisible();
+});
+
+test('Widgets has list item tool tips', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Widgets').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: 'Tool Tips' })).toBeVisible();
+});
+
+test('Widgets has list item menu', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Widgets').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: /^Menu$/ })).toBeVisible();
+});
+
+test('Widgets has list item select menu', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Widgets').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: 'Select Menu' })).toBeVisible();
+});
+
+test('Interactions has list item sortable', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Interactions').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: 'Sortable' })).toBeVisible();
+});
+
+test('Interactions has list item selectable', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Interactions').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: 'Selectable' })).toBeVisible();
+});
+
+test('Interactions has list item Resizeable', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Interactions').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: 'Resizable' })).toBeVisible();
+});
+
+test('Interactions has list item droppable', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Interactions').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: 'Droppable' })).toBeVisible();
+});
+
+test('Interactions has list item dragabble', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Interactions').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: 'Dragabble' })).toBeVisible();
+});
+
+test('Book Store Application has list item login', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Book Store Application').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: 'Login' })).toBeVisible();
+});
+
+test('Book Store Application has list item book store', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Book Store Application').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: /^Book Store$/ })).toBeVisible();
+});
+
+test('Book Store Application has list item profile', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Book Store Application').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: 'Profile' })).toBeVisible();
+});
+
+test('Book Store Application has list item book store api', async ({ page }) => {
+await page.goto('https://demoqa.com/');
+
+// Click the get element link.
+await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+
+await page.getByText('Book Store Application').click()
+
+await expect(page
+    .getByRole('listitem')
+    .filter({ hasText: 'Book Store API' })).toBeVisible();
+});
