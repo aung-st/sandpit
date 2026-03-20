@@ -166,7 +166,7 @@ await page.goto('https://demoqa.com/');
 // Click the get element link.
 await page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
 
-await page.getByText('Alerts, Frame & Windows').click()
+await page.locator('text=/Alerts, Frame & Windows/').click()
 
 await expect(page
     .getByRole('listitem')
