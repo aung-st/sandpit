@@ -10,6 +10,11 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        suite:
+          - tests/001_root.spec.ts
+          - tests/002_elements.spec
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -20,12 +25,5 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test
-    # - uses: christopherhx/gitea-upload-artifact@v4
-    #   if: ${{ !cancelled() }}
-    #   with:
-    #     name: playwright-report
-    #     path: playwright-report/
-    #     retention-days: 30
-    #   env:
-    #     TOKEN: ${{secrets.TOKEN}}
+      run: npx playwright test ${{ matrix.suite }}
+
