@@ -4,15 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "report":"npx playwright show-report",
+    "report": "npx playwright show-report",
     "build": "docker compose build --no-cache",
-    "test":"docker compose up"
+    "test": "docker compose up"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.57.0",
-    "@types/node": "^25.0.3"
+    "@types/node": "^25.0.3",
+    "husky": "^9.1.7"
   }
 }
