@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/playwright:v1.57.0-noble
 
 WORKDIR /app
 
-# VOLUME /test-results
+VOLUME /test-results
 
 COPY package*.json ./ 
 

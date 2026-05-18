@@ -5,15 +5,15 @@
   "main": "index.js",
   "scripts": {
     "report": "npx playwright show-report",
-    "build": "docker compose build --no-cache",
+    "build": "docker compose build",
     "test": "docker compose up"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.60.0",
-    "@types/node": "^25.8.0",
-    "husky": "^9.1.7"
+    "@playwright/test": "1.60.0",
+    "@types/node": "25.8.0",
+    "husky": "9.1.7"
   }
 }
