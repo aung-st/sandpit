@@ -19,8 +19,8 @@ pipeline {
             steps {
                 script {
                     def nodeVersion = 'lts/*'
-                    sh "curl -sL https://deb.nodesource.com/setup_${nodeVersion}.x | sudo -E bash -"
-                    sh "sudo apt-get install -y nodejs"
+                    sh "curl -sL https://deb.nodesource.com/setup_${nodeVersion}.x | bash -"
+                    sh "apt-get update && apt-get install -y nodejs"
                 }
             }
         }
