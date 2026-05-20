@@ -1,21 +1,77 @@
 pipeline {
     agent any
+    
+    options {
+        timeout(time: 10, unit: 'MINUTES')
+        disableConcurrentBuilds()
+    }
 
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo 'Building..'
+                script {
+                    checkout scm
+                }
             }
         }
-        stage('Test') {
+        
+        stage('Setup Node') {
             steps {
-                echo 'Testing..'
+                script {
+                    def nodeVersion = 'lts/*'
+                    sh "curl -sL https://deb.nodesource.com/setup_${nodeVersion}.x | sudo -E bash -"
+                    sh "sudo apt-get install -y nodejs"
+                }
             }
         }
-        stage('Deploy') {
+
+        stage('Cache Playwright Browsers') {
             steps {
-                echo 'Deploying....'
+                script {
+                    def cacheDir = "${env.HOME}/.cache/ms-playwright"
+                    if (fileExists(cacheDir)) {
+                        echo "Restoring Playwright browsers from cache"
+                    } else {
+                        echo "No cache found, installing Playwright browsers"
+                        sh "npx playwright install --with-deps"
+                    }
+                }
             }
         }
+        
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    sh 'npm ci'
+                }
+            }
+        }
+
+        stage('Install Playwright Browsers') {
+            steps {
+                script {
+                    sh 'npx playwright install --with-deps'
+                }
+            }
+        }
+
+        stage('Run Playwright Tests') {
+            steps {
+                script {
+                    def suites = [
+                        'tests/001_root.spec.ts',
+                        'tests/002_elements.spec'
+                    ]
+
+                    for (suite in suites) {
+                        sh "npx playwright test ${suite}"
+                    }
+                }
+            }
+        }
+    }
+    
+    triggers {
+        cron('H 0 * * *') 
     }
 }
