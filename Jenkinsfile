@@ -18,7 +18,7 @@ pipeline {
         stage('Setup Node') {
             steps {
                 script {
-                    def nodeVersion = '24.x'
+                    def nodeVersion = '24'
                     sh "curl -sL https://deb.nodesource.com/setup_${nodeVersion}.x | bash -"
                     sh "apt-get update && apt-get install -y nodejs"
                 }
