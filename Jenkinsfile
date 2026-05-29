@@ -55,7 +55,7 @@ pipeline {
                         echo "Cache hit — skipping browser install (${cacheKey})"
                     } else {
                         echo "Cache miss — installing Playwright browsers (${cacheKey})"
-                        sh 'npx playwright install --with-deps chromium'
+                        sh 'npx playwright install --with-deps'
 
                         /** Write the flag file so subsequent builds skip the install.
                         Also clean up any flag files from older Playwright versions
