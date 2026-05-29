@@ -6,7 +6,8 @@
   "scripts": {
     "report": "npx playwright show-report",
     "build": "docker compose build",
-    "test": "docker compose up"
+    "test": "docker compose up",
+    "supertest": "for counter in {1..3}; do npm run test; done"
   },
   "keywords": [],
   "author": "",
