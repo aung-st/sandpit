@@ -2,59 +2,66 @@ import { Page, expect } from '@playwright/test';
 
 class ElementsPage {
   private page: Page;
-  private url: string = 'https://demoqa.com';
+  private readonly url: string = 'https://demoqa.com';
+
+  // --- Locators ---
+  private readonly elementsCard = (page: Page) =>
+    page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)');
+
+  private readonly menuItem = (text: string | RegExp) =>
+    this.page.getByRole('listitem').filter({ hasText: text });
+
+  // --- Element items to assert visibility ---
+  private readonly MENU_ITEMS = [
+    'Text Box',
+    'Check Box',
+    'Radio Button',
+    'Web Tables',
+    'Buttons',
+    /^Links$/,
+    'Broken Links - Images',
+    'Upload and Download',
+    'Dynamic Properties',
+  ] as const;
 
   constructor(page: Page) {
     this.page = page;
   }
 
+  // --- Navigation ---
   async goto() {
     await this.page.goto(this.url);
   }
 
   async clickElementsLink() {
-    await this.page.locator('.category-cards > a:nth-child(1) > div:nth-child(1)').click();
+    await this.elementsCard(this.page).click();
   }
 
-  async assertTextBoxVisible() {
-    await expect(this.page.getByRole('listitem').filter({ hasText: 'Text Box' })).toBeVisible();
+  // --- Assertions ---
+
+  /**
+   * Asserts a single menu item is visible by name.
+   * e.g. await elementsPage.assertMenuItemVisible('Text Box');
+   */
+  async assertMenuItemVisible(item: string | RegExp) {
+    await expect(this.menuItem(item)).toBeVisible();
   }
 
-  async assertCheckBoxVisible() {
-    await expect(this.page.getByRole('listitem').filter({ hasText: 'Check Box' })).toBeVisible();
+  /**
+   * Asserts all known Elements menu items are visible.
+   */
+  async assertAllMenuItemsVisible() {
+    for (const item of this.MENU_ITEMS) {
+      await expect(this.menuItem(item)).toBeVisible();
+    }
   }
 
-  async assertRadioButtonVisible() {
-    await expect(this.page.getByRole('listitem').filter({ hasText: 'Radio Button' })).toBeVisible();
-  }
-
-  async assertWebTablesVisible() {
-    await expect(this.page.getByRole('listitem').filter({ hasText: 'Web Tables' })).toBeVisible();
-  }
-
-  async assertButtonsVisible() {
-    await expect(this.page.getByRole('listitem').filter({ hasText: 'Buttons' })).toBeVisible();
-  }
-
-  async assertLinksVisible() {
-    await expect(this.page.getByRole('listitem').filter({ hasText: /^Links$/ })).toBeVisible();
-  }
-
-  async assertBrokenLinksImagesVisible() {
-    await expect(this.page.getByRole('listitem').filter({ hasText: 'Broken Links - Images' })).toBeVisible();
-  }
-
-  async assertUploadAndDownloadVisible() {
-    await expect(this.page.getByRole('listitem').filter({ hasText: 'Upload and Download' })).toBeVisible();
-  }
-
-  async assertDynamicPropertiesVisible() {
-    await expect(this.page.getByRole('listitem').filter({ hasText: 'Dynamic Properties' })).toBeVisible();
-  }
-  
+  /**
+   * Clicks a menu item by label and asserts the submenu collapses.
+   */
   async closeListItemsAndNavigateTo(menu: string) {
     await this.page.getByText(menu).click();
-    await expect(this.page.getByRole('listitem').filter({ hasText: 'Text Box' })).not.toBeVisible();
+    await expect(this.menuItem('Text Box')).not.toBeVisible();
   }
 }
 
