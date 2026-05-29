@@ -14,7 +14,7 @@ jobs:
       matrix:
         suite:
           - tests/001_root.spec.ts
-          - tests/002_elements.spec
+          - tests/002_elements.spec.ts
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4

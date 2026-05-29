@@ -60,7 +60,7 @@ pipeline {
                 script {
                     def suites = [
                         'tests/001_root.spec.ts',
-                        'tests/002_elements.spec'
+                        'tests/002_elements.spec.ts'
                     ]
 
                     for (suite in suites) {
