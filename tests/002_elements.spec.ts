@@ -11,6 +11,7 @@ test.describe('Elements Page Tests', () => {
   });
 
   test('Elements has all menu items visible', async() => {
+    test.setTimeout(10_000);
     await elementsPage.assertAllMenuItemsVisible()
   })
 
