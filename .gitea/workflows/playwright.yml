@@ -14,6 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        browser:
+          - chromium
+          - firefox
+          - webkit
         suite:
           - tests/001_root.spec.ts
           - tests/002_elements.spec.ts
@@ -29,13 +33,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Dependencies for Firefox
-        run: apt-get update && apt-get install -y libgtk-3-0 libgbm1
-
       - name: Get Playwright version
         id: playwright-version
         run: |
-          echo "version=$(node -e "console.log(require('./package-lock.json').packages['node_modules/@playwright/test'].version)")" >> $GITHUB_OUTPUT
+          VERSION=$(node -p "require('./package.json').devDependencies['@playwright/test']")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Cache Playwright Browsers
         id: playwright-cache
@@ -46,7 +48,7 @@ jobs:
 
       - name: Install Playwright Browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps
+        run: npx playwright install ${{ matrix.browser }} --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test ${{ matrix.suite }} --retries=2 --reporter=list
+        run: npx playwright test ${{ matrix.suite }} --project=${{ matrix.browser }} --retries=2 --reporter=list
