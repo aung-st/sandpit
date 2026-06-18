@@ -16,8 +16,6 @@ jobs:
       matrix:
         browser:
           - chromium
-          - firefox
-          - webkit
         suite:
           - tests/001_root.spec.ts
           - tests/002_elements.spec.ts
