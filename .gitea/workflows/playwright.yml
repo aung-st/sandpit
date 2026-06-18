@@ -46,9 +46,12 @@ jobs:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
 
+      - name: Install system dependencies
+        run: npx playwright install-deps ${{ matrix.browser }}
+
       - name: Install Playwright Browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: npx playwright install ${{ matrix.browser }} --with-deps
+        run: npx playwright install ${{ matrix.browser }}
 
       - name: Run Playwright tests
         run: npx playwright test ${{ matrix.suite }} --project=${{ matrix.browser }} --retries=2 --reporter=list
